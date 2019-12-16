@@ -1,16 +1,49 @@
 import React, { Component } from 'react';
 import socketIOclient from "socket.io-client";
+import axios from 'axios';
+
 
 const socket = socketIOclient("localHost:8080")
+
+
+// { value: '9', label: 'General' },
+// { value: '10', label: 'Books' },
+// { value: '11', label: 'Film' },
+// { value: '12', label: 'Music' },
+// { value: '13', label: 'Musicals / Theatre' },
+// { value: '14', label: 'Television' },
+// { value: '15', label: 'Video Games' },
+// { value: '16', label: 'Board Games' },
+// { value: '17', label: 'Science / Nature' },
+// { value: '18', label: 'Computers' },
+// { value: '19', label: 'Math' },
+// { value: '20', label: 'Mythology' },
+// { value: '21', label: 'Sports' },
+// { value: '22', label: 'Geography' },
+// { value: '23', label: 'History' },
+// { value: '24', label: 'Politics' },
+// { value: '25', label: 'Art' },
+// { value: '26', label: 'Celebrities' },
+// { value: '27', label: 'Animals' },
+// { value: '28', label: 'Vehicles' },
+// { value: '29', label: 'Comics' },
+// { value: '30', label: 'Gadgets' },
+// { value: '31', label: 'Anime / Manga' },
+// { value: '32', label: 'Cartoons' },
+
+
+
 
 export default class Create_Game extends Component {
 
     constructor(props) {
         super(props);
 
-        this.onChangeGame_question_amount = this.onChangeTodoDescription.bind(this);
-        this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
-        this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
+        this.onChangeGame_question_amount = this.onChangeGame_question_amount.bind(this);
+        this.onChangeGame_category = this.onChangeGame_category.bind(this);
+        this.onChangeGame_difficulty = this.onChangeGame_difficulty.bind(this);
+        this.onChangeGame_type = this.onChangeGame_type.bind(this);
+
         this.onSubmit = this.onSubmit.bind(this);
 
 
@@ -23,129 +56,201 @@ export default class Create_Game extends Component {
         }
     }
 
+    // componentDidMount() {
+    //     axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple`)
+    //         .then(res => {
+    //             console.log(res);
+    //         });
+    // }
+
     onChangeGame_question_amount(e) {
         this.setState({
-            todo_description: e.target.value
+            game_question_amount: e.target.value
         });
     }
 
     onChangeGame_category(e) {
         this.setState({
-            todo_responsible: e.target.value
+            game_category: e.target.value
+        });
+    }
+
+    onChangeGame_difficulty(e) {
+        this.setState({
+            game_difficulty: e.target.value
         });
     }
 
     onChangeGame_type(e) {
         this.setState({
-            todo_priority: e.target.value
+            game_type: e.target.value
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Form Submitted:`);
-        console.log(`Todo Description: ${this.state.game_question_amount}`);
-        console.log(`Todo Responsible: ${this.state.game_category}`);
-        console.log(`Todo Priority: ${this.state.game_difficulty}`);
-        console.log(`Todo Priority: ${this.state.game_type}`);
+        axios.get(`https://opentdb.com/api.php?amount=${this.state.game_question_amount}&category=${this.state.game_category}&difficulty=${this.state.game_difficulty}&type=${this.state.game_type}`)
+        .then(res => {
+            console.log(res);
+        });
 
-        this.setState({
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
-        })
+        console.log(`Form Submitted:`);
+        console.log(`Question Amount: ${this.state.game_question_amount}`);
+        console.log(`Category: ${this.state.game_category}`);
+        console.log(`Difficulty: ${this.state.game_difficulty}`);
+        console.log(`Type: ${this.state.game_type}`);
+
+        // this.setState({
+        //     game_question_amount: '',
+        //     todo_responsible: '',
+        //     todo_priority: '',
+        //     todo_completed: false
+        // })
     }
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <div style={{ maxWidth: "600px", display: "flex", justifyContent: "center" }}>
 
-                <div className="form-group">
-                    <label>Num of Questions: </label>
-                    <input
-                        type="number"
-                        min="5"
-                        max="20"
-                        className="form-control"
-                        value={this.state.game_question_amount}
-                        onChange={this.onChangeGame_question_amount}
-                    />
-                </div>
+                <form onSubmit={this.onSubmit}>
 
-                <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value={this.state.game_category} onChange={this.onChangeGame_category}>
-                        Catagories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#" val="9">General</a>
-                        <a class="dropdown-item" href="#" val="10">Books</a>
-                        <a class="dropdown-item" href="#" val="11">Film</a>
-                        <a class="dropdown-item" href="#" val="12">Music</a>
-                        <a class="dropdown-item" href="#" val="13">Musicals / Theatre</a>
-                        <a class="dropdown-item" href="#" val="14">Television</a>
-                        <a class="dropdown-item" href="#" val="15">Video Games</a>
-                        <a class="dropdown-item" href="#" val="16">Board Games</a>
-                        <a class="dropdown-item" href="#" val="17">Science and Nature</a>
-                        <a class="dropdown-item" href="#" val="18">Computers</a>
-                        <a class="dropdown-item" href="#" val="19">Math</a>
-                        <a class="dropdown-item" href="#" val="20">Mythology</a>
-                        <a class="dropdown-item" href="#" val="21">Sports</a>
-                        <a class="dropdown-item" href="#" val="22">Geography</a>
-                        <a class="dropdown-item" href="#" val="23">History</a>
-                        <a class="dropdown-item" href="#" val="24">Politics</a>
-                        <a class="dropdown-item" href="#" val="25">Art</a>
-                        <a class="dropdown-item" href="#" val="26">Celebrities</a>
-                        <a class="dropdown-item" href="#" val="27">Animals</a>
-                        <a class="dropdown-item" href="#" val="28">Vehicles</a>
-                        <a class="dropdown-item" href="#" val="29">Comics</a>
-                        <a class="dropdown-item" href="#" val="30">Gadgets</a>
-                        <a class="dropdown-item" href="#" val="31">Anime / Manga</a>
-                        <a class="dropdown-item" href="#" val="32">Cartoons</a>
+                    <div className="form-group">
+                        <label>Num of Questions: </label>
+                        <input
+                            type="number"
+                            min="5"
+                            max="20"
+                            className="form-control"
+                            value={this.state.game_question_amount}
+                            onChange={this.onChangeGame_question_amount}
+                        />
                     </div>
-                </div>
 
-                <div className="form-group">
-                    <h3>Difficulty:</h3>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="difficultyOptions"
-                            id="difficultyLow"
-                            value="Low"
-                            checked={this.state.game_difficulty === 'Low'}
-                            onChange={this.onChangeGame_difficulty}
-                        />
-                        <label className="form-check-label">Low</label>
+                    <div className="form-group">
+                        <h3>Category:</h3>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="categoryOptions"
+                                id="general"
+                                value="9"
+                                checked={this.state.game_category === '9'}
+                                onChange={this.onChangeGame_category}
+                            />
+                            <label className="form-check-label">General</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="categoryOptions"
+                                id="books"
+                                value="10"
+                                checked={this.state.game_category === '10'}
+                                onChange={this.onChangeGame_category}
+                            />
+                            <label className="form-check-label">Books</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="categoryOptions"
+                                id="Film"
+                                value="11"
+                                checked={this.state.game_category === '11'}
+                                onChange={this.onChangeGame_category}
+                            />
+                            <label className="form-check-label">Film</label>
+                        </div>
                     </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="difficultyOptions"
-                            id="difficultyMedium"
-                            value="Medium"
-                            checked={this.state.Game_difficulty === 'Medium'}
-                            onChange={this.onChangeGame_difficulty}
-                        />
-                        <label className="form-check-label">Medium</label>
+
+                    <div className="form-group">
+                        <h3>Type:</h3>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="typeOptions"
+                                id="difficultyLow"
+                                value="Low"
+                                checked={this.state.game_type === ''}
+                                onChange={this.onChangeGame_type}
+                            />
+                            <label className="form-check-label">Both</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="typeOptions"
+                                id="difficultyMedium"
+                                value="multiple"
+                                checked={this.state.game_type === 'multiple'}
+                                onChange={this.onChangeGame_type}
+                            />
+                            <label className="form-check-label">Multiple Choice</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="typeOptions"
+                                id="difficultyHigh"
+                                value="boolean"
+                                checked={this.state.game_type === 'boolean'}
+                                onChange={this.onChangeGame_type}
+                            />
+                            <label className="form-check-label">True or False</label>
+                        </div>
                     </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="difficultyOptions"
-                            id="difficultyHigh"
-                            value="High"
-                            checked={this.state.game_difficulty === 'High'}
-                            onChange={this.onChangeGame_difficulty}
-                        />
-                        <label className="form-check-label">High</label>
+
+                    <div className="form-group">
+                        <h3>Difficulty:</h3>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="difficultyOptions"
+                                id="difficultyLow"
+                                value="Low"
+                                checked={this.state.game_difficulty === 'Low'}
+                                onChange={this.onChangeGame_difficulty}
+                            />
+                            <label className="form-check-label">Low</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="difficultyOptions"
+                                id="difficultyMedium"
+                                value="Medium"
+                                checked={this.state.game_difficulty === 'Medium'}
+                                onChange={this.onChangeGame_difficulty}
+                            />
+                            <label className="form-check-label">Medium</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="difficultyOptions"
+                                id="difficultyHigh"
+                                value="High"
+                                checked={this.state.game_difficulty === 'High'}
+                                onChange={this.onChangeGame_difficulty}
+                            />
+                            <label className="form-check-label">High</label>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div className="form-group">
+                        <input type="submit" value="Create Game" className="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         )
     }
 }
