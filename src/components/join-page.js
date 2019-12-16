@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 
 
-const socket = socketIOClient();
+const socket = socketIOClient("https://evening-beach-84352.herokuapp.com/");
 
 
 export default class MainPage extends Component {
