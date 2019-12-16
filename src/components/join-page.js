@@ -119,7 +119,7 @@ export default class MainPage extends Component {
                     :
                         // <div className="d-flex justify-content-center" style={{height: "100vh"}}>
                             (this.state.answer === '')
-                                ?
+                            ?
                                 <div style={{height: "100vh"}}> 
                                     <div className="row">
                                         <button className="btn btn-primary" style={{width: "50vw", height: "50vh"}} onClick={this.submitAnswer}>A</button>
@@ -130,9 +130,9 @@ export default class MainPage extends Component {
                                         <button className="btn btn-warning" style={{width: "50vw", height: "50vh"}} onClick={this.submitAnswer}>D</button>
                                     </div>
                                 </div>
-                                :
+                            :
                                 this.state.result === ''
-                                    ?
+                                ?
                                     <div className='d-flex justify-content-center align-items-center'> 
                                         <div className={this.state.color} style={{height: "100vh", width: "100vw", color: "white", flexDirection:"column", backgroundColor:"primary"}}>
                                             {/* <div className='d-flex justify-content-center align-items-center'> */}
@@ -140,19 +140,19 @@ export default class MainPage extends Component {
                                             {/* </div> */}
                                         </div>
                                     </div>
-                                    :
+                                :
                                     this.state.result === 'Correct' && this.state.finalResult === ''
-                                        ?
+                                    ?
                                         <div className='d-flex justify-content-center align-items-center btn btn-success' style={{height: "100vh", width: "100vw"}}>
                                             <h4>You were correct!!</h4>
                                         </div>
-                                        :
+                                    :
                                         this.state.finalResult === ''
-                                            ?
+                                        ?
                                             <div className='d-flex justify-content-center align-items-center btn btn-danger' style={{height: "100vh", width: "100vw"}}>
                                                 <h4>You were wrong...</h4>
                                             </div> 
-                                            :
+                                        :
                                             <div className='d-flex justify-content-center align-items-center btn btn-success' style={{height: "100vh", width: "100vw"}}>
                                                 <h4>Congratulations! You came in place # {this.state.finalResult.placement+1} with {this.state.finalResult.points} points!</h4>
                                             </div> 

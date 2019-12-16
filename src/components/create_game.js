@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import socketIOclient from "socket.io-client";
 import axios from 'axios';
-
+import turndown from 'turndown';
 
 const socket = socketIOclient("localHost:8080")
 
@@ -57,11 +57,46 @@ export default class Create_Game extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
+        var results = [{
+            "category": "General Knowledge",
+            "type": "multiple",
+            "difficulty": "medium",
+            "question": "What is the name of the very first video uploaded to YouTube?",
+            "correct_answer": "Me at the zoo",
+            "incorrect_answers": [
+              "tribute",
+              "carrie rides a truck",
+              "Her new puppy from great grandpa vern."
+            ]
+          },
+          {
+            "category": "General Knowledge",
+            "type": "multiple",
+            "difficulty": "medium",
+            "question": "In 2013 how much money was lost by Nigerian scams?",
+            "correct_answer": "$12.7 Billion",
+            "incorrect_answers": [
+              "$95 Million",
+              "$956 Million",
+              "$2.7 Billion"
+            ]
+          },
+          {
+            "category": "General Knowledge",
+            "type": "multiple",
+            "difficulty": "medium",
+            "question": "Which of these companies does NOT manufacture automobiles?",
+            "correct_answer": "Ducati",
+            "incorrect_answers": [
+              "Nissan",
+              "GMC",
+              "Fiat"
+            ]
+          }];
         axios.get(`https://opentdb.com/api.php?amount=${this.state.game_question_amount}&category=${this.state.game_category}&difficulty=${this.state.game_difficulty}&type=multiple`)
         .then(res => {
             this.setState({
-                quiz: res.data.results,
+                quiz: results,
                 roomID: Math.round(Math.random()*100000)
             });
             socket.emit('create game', this.state.roomID);
@@ -70,7 +105,7 @@ export default class Create_Game extends Component {
                 this.setState({ 
                     playerlist: [...this.state.playerlist, {
                         name: msg.playerName,
-                        points: '',
+                        points: 0,
                         id: msg.id
                     }] 
                 }) 

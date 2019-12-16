@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../../build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -19,6 +19,7 @@ app.use(express.json());
 // connection.once('open', function(){
 //     console.log("MongoDB database connection established successfully");
 // })
+
 
 server.listen(PORT, function() {
     console.log("Server listening on PORT " + PORT);
