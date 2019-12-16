@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 
 
-const socket = socketIOClient("localhost:8080");
+const socket = socketIOClient();
 
 
 export default class MainPage extends Component {

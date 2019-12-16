@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOclient from "socket.io-client";
 import axios from 'axios';
 
-const socket = socketIOclient("localHost:8080")
+const socket = socketIOclient()
 
 export default class Create_Game extends Component {
 
