@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
             answer: msg.answer,
             timeRemaining: msg.timeRemaining
         };
-        console.log(response)
+        console.log(response);
         var rooms = socket.rooms;
         var roomID = rooms[Object.keys(rooms)[0]];
         io.in(roomID).emit('receive answer', response);
