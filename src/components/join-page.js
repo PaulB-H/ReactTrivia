@@ -49,7 +49,6 @@ export default class MainPage extends Component {
         });
     }
 
-    
     render() {
         return (
             <div className="d-flex align-items-center justify-content-center" style={{height: "100vh"}}> 

@@ -31,7 +31,9 @@ export default class MainPage extends Component {
             })
         });
         socket.on('next question', () => {
-            window.location.href = "/playeranswer"
+            this.setState({
+                answer: ''
+            })
         });
         socket.on('game finished', (msg) => {
             this.setState({
@@ -62,7 +64,7 @@ export default class MainPage extends Component {
                             <p>Answer {this.state.answer}</p>
                         </div>
                         :
-                        this.state.result === 'correct'
+                        this.state.result === 'Correct'
                             ?
                             <div className='d-flex justify-content-center align-items-center btn btn-primary' style={{height: "100vh", width: "100vw"}}>
                                 <p>You were correct!!</p>
