@@ -1,3 +1,5 @@
+To run this game, please use the following Heroku link: https://evening-beach-84352.herokuapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
