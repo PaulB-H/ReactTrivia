@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import axios from 'axios';
 
-const socket = socketIOClient(window.location.hostname)
+const socket = socketIOClient()
 
 // ws://evening-beach-84352.herokuapp.com/socket.io/?EIO=4&transport=websocket
 

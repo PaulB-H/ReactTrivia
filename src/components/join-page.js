@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient(window.location.hostname)
+const socket = socketIOClient()
 // const socket = socketIOClient(":8080")
 
 export default class MainPage extends Component {
