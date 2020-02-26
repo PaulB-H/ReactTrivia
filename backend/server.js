@@ -2,25 +2,38 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const server = require('http').Server(app);
-const socketIO = require('socket.io')
-const io = socketIO(server, { origin: "*:*" });
+// const server = require('http').Server(app);
 
-const PORT = process.env.PORT || 8080;
+// const io = socketIO(server, { origin: "*:*" });
+
+
+// const PORT = process.env.PORT || 8080;
+
+
+
+const PORT = process.env.PORT || 3000;
+const INDEX = '/index.html';
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+  const socketIO = require('socket.io')
+  const io = socketIO(server);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-server.listen(PORT, function() {
-    console.log("Server listening on PORT " + PORT);
-});
+// server.listen(PORT, function() {
+//     console.log("Server listening on PORT " + PORT);
+// });
 
-app.get("/", function (req, res) {
-    console.log("send")
-    // res.send("API is working")
-    res.sendFile(path.resolve(__dirname + "/../public/index.html"))
-});
+// app.get("/", function (req, res) {
+//     console.log("send")
+//     // res.send("API is working")
+//     res.sendFile(path.resolve(__dirname + "/../public/index.html"))
+// });
 
 io.on('connection', (socket) => {
     console.log(`user ${socket.id} connected`);
