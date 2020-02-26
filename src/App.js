@@ -6,9 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import StartPage from "./components/start-page";
 import JoinPage from "./components/join-page";
 import Create_Game from "./components/create_game";
-import PlayerAnswerPage from "./components/player-answer";
-import GameQuestionsPage from "./components/game-questions";
-
 
 class App extends Component {
   render() {
@@ -17,8 +14,6 @@ class App extends Component {
           <Route exact path="/" component={StartPage} />
           <Route exact path="/join" component={JoinPage} />
           <Route exact path="/create" component={Create_Game} />
-          <Route exact path="/gamequestions" component={GameQuestionsPage} />
-          <Route exact path="/playeranswer" component={PlayerAnswerPage}/>
       </Router>
     );
   }

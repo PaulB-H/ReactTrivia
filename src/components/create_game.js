@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import socketIOclient from "socket.io-client";
+import socketIOClient from "socket.io-client";
 import axios from 'axios';
 
-const socket = socketIOclient("https://evening-beach-84352.herokuapp.com/")
+// const socket = socketIOClient("https://evening-beach-84352.herokuapp.com/")
+const socket = socketIOClient(":8080")
+
 
 export default class Create_Game extends Component {
 
