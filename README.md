@@ -1,5 +1,8 @@
 CreaTRIVIty
 One Paragraph of project description goes here
+To run this game, please use the following Heroku link: https://evening-beach-84352.herokuapp.com/
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
