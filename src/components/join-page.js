@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient("https://evening-beach-84352.herokuapp.com/")
+const socket = socketIOClient("ws://evening-beach-84352.herokuapp.com/socket.io/?EIO=4&transport=websocket")
 // const socket = socketIOClient(":8080")
 
 export default class MainPage extends Component {
