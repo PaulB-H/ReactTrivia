@@ -12,12 +12,19 @@ Step 1: Host a game on a device with a larger screen - this will be used to disp
 
 Step 2: Players will join the game from their own devices (phones/tablet/laptop) by first clicking Join Game and entering their Player Name as well as the Room ID they want to join. Click on Join Room and your player name will pop up on the host device. Once all players have joined, click Start Game on the host device to begin! 
 
+![Working Giphy](/public/Join-game.gif)
+
 Step 3: The first question will be displayed on the host device, as well as the Time Remaining (10 seconds) and four possible multiple choice answers. The players can click their answer choice on their personal devices, which will then transform to show the selected answer. Players get points for chosing the correct answer as well as how quickly they selected their answer.
+
+![Working Giphy](/public/Answer-question.gif)
 
 Step 4: After time runs out, the host screen will display which players answered correctly and those that answered incorrectly. Players can also see the result on their own screen, with colour coding! Click next question on the host device to proceed.
 
+![Working Giphy](/public/Question-results.gif)
+
 Step 5: Once all questions have been answered, the game is over! The Final Scores screen will be shown on the host device for all to see. The player's devices also show their scores and rankings relative to other players. To play again, simply refresh the page and create a new game. 
 
+![Working Giphy](/public/Final-results.gif)
 
 ## Built With
 
